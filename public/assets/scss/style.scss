@@ -1,0 +1,37 @@
+// Cria o tema
+$my-color-1: #68C7D8;
+$my-color-2: #150578;
+$my-color-3: #0E0E52;
+$my-color-4: #4c68d7;
+$my-color-5: #FFFFFF;
+$my-color-6: #2B2B2B;
+$my-color-7: #000000;
+$my-color-8: #ED1C2D;
+
+$theme-colors:(
+	"my-color-1": $my-color-1,
+	"my-color-2": $my-color-2,
+	"my-color-3": $my-color-3,
+	"my-color-4": $my-color-4,
+	"my-color-5": $my-color-5,
+	"my-color-6": $my-color-6,
+	"my-color-7": $my-color-7,
+	"my-color-8": $my-color-8
+);
+
+// Classes personalizadas
+$link-color: $my-color-7;
+
+.menu-email {
+	& .brand {
+		text: {
+			decoration: none;
+		}
+
+		&:hover {
+			color: $my-color-6;
+		}
+	}
+}
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
