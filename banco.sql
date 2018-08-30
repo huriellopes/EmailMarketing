@@ -19,14 +19,18 @@ CREATE TABLE emails(
 	idEmail int UNSIGNED not null auto_increment,
 	nome varchar(255) not null,
 	email varchar(150) UNIQUE not null,
+	ativo char(2) not null DEFAULT '1',
 	dt_created TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(idEmail)
 );
+
+ALTER TABLE emails ADD CONSTRAINT CK_ativo CHECK(ativo in('0','1'));
 
 CREATE VIEW email_cad as
 SELECT
 	nome,
 	email,
-	dt_created as cadastro
+	dt_created as cadastro,
+	ativo as status
 FROM
 	emails;

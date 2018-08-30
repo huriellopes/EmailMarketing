@@ -22,8 +22,8 @@ abstract class RouteDefault
     
     protected function run($url)
     {
-        array_walk($this->routes,function($route)use($url){
-            if($url == $route['route']){
+        array_walk($this->routes, function ($route) use ($url) {
+            if ($url == $route['route']) {
                 $class = "App\\Controllers\\".ucfirst($route['controller']);
                 $controller = new $class;
                 $action = $route['action'];
@@ -39,6 +39,6 @@ abstract class RouteDefault
     
     protected function getUrl()
     {
-        return parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
+        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 }

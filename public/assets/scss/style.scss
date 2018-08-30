@@ -22,6 +22,14 @@ $theme-colors:(
 // Classes personalizadas
 $link-color: $my-color-7;
 
+body {
+	font: {
+		family: 'Open Sans', sans-serif;
+		weight: 400;
+		size: 16px;
+	}
+}
+
 .menu-email {
 	& .brand {
 		text: {
@@ -30,6 +38,13 @@ $link-color: $my-color-7;
 
 		&:hover {
 			color: $my-color-6;
+		}
+	}
+
+	& p {
+		font: {
+			weight: 400;
+			size: 0.60em;
 		}
 	}
 }

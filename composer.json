@@ -3,7 +3,8 @@
 	"description": "Sistema de mvc base",
 	"require": {
 		"php": ">=5.6",
-		"squizlabs/php_codesniffer": "^3.0"
+		"squizlabs/php_codesniffer": "^3.0",
+		"phpmailer/phpmailer": "^6.0"
 	},
 	"authors": [
         {

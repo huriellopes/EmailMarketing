@@ -26,7 +26,8 @@ SET character_set_client = utf8;
 /*!50001 CREATE VIEW `email_cad` AS SELECT 
  1 AS `nome`,
  1 AS `email`,
- 1 AS `cadastro`*/;
+ 1 AS `cadastro`,
+ 1 AS `status`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -40,6 +41,7 @@ CREATE TABLE `emails` (
   `idEmail` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `email` varchar(150) NOT NULL,
+  `ativo` char(2) NOT NULL DEFAULT '1',
   `dt_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idEmail`),
   UNIQUE KEY `email` (`email`)
@@ -68,7 +70,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `email_cad` AS select `emails`.`nome` AS `nome`,`emails`.`email` AS `email`,`emails`.`dt_created` AS `cadastro` from `emails` */;
+/*!50001 VIEW `email_cad` AS select `emails`.`nome` AS `nome`,`emails`.`email` AS `email`,`emails`.`dt_created` AS `cadastro`,`emails`.`ativo` AS `status` from `emails` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -82,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-23 18:31:40
+-- Dump completed on 2018-08-29  1:22:13

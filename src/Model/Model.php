@@ -27,18 +27,48 @@ abstract class Model
         return $all->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function save(string $table, $fields = [])
+    public function save(string $table, array $fields = [])
     {
-        $dados = $fields;
+        $dados = array_values($fields);
         try {
-            $sql = "INSERT INTO {$table} VALUES(NULL,'".explode(', ', $fields)."',now())";
-            var_dump($sql);
+            //$columns = array_keys($fields);
+            $values = array_fill(0, count($fields), '?');
+            $values = implode(', ', $values);
+            $sql = "INSERT INTO {$table} VALUES(NULL,{$values},'1',now())";
             $save = $this->db->prepare($sql);
-            $save->bindValue($dados, $fields);
-            return $save->execute();
+            return $save->execute($dados);
         } catch (PDOException $e) {
             echo $e->getmessage();
             exit();
         }
+    }
+
+    public function update(string $table, array $fields = [])
+    {
+        $dados = array_values($fields);
+        try {
+            $values = array_fill(0, count($fields), '=?');
+            $values = implode(', ', $values);
+            $sql = "UPDATE {$table} SET  {$values} WHERE {$values}";
+            var_dump($sql);
+            $update = $this->db->prepare($sql);
+            return $update->execute($dados);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
+    public function find(string $table, $param, $inicio, $ate)
+    {
+        try {
+            $sql = "SELECT *,{$param} FROM {$table} where cadastro >= '".$inicio."' and cadastro <= '".$ate."' ";
+            $find = $this->db->prepare($sql);
+            $find->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+        return $find->fetchAll(PDO::FETCH_ASSOC);
     }
 }
